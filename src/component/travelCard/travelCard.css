@@ -1,0 +1,157 @@
+.card {
+    position: relative;
+    width: 260px;
+    height: 370px;
+    background: #ffffff;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 5rem;
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -68%;
+    width: 100%;
+    height: 100%;
+    background: #e5d7bb;
+    transform: skewY(390deg);
+    transition: 0.5s;
+}
+
+.card:hover::before {
+    transform: skewY(345deg);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 8rem;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.card .imgBx {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    z-index: 1;
+}
+
+.card .imgBx > img {
+    max-width: 100%;
+    height: 10rem;
+    transition: 0.5s;
+}
+
+.card:hover .imgBx > img {
+    height: 8rem;
+}
+
+.card .addFav-btn {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: -2.2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.card .addFav-btn > i {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: 0.5s;
+}
+
+.card .addFav-btn > i:hover {
+    color: #ff434a !important;
+}
+
+.card .addFav-btn.active > i {
+    color: #ff434a;
+    font-size: 1.5rem;
+    transition: 0.5s;
+}
+
+.card .addFav-btn.active:hover > i {
+    color: black !important;
+}
+
+.card:hover .addFav-btn > i {
+    color: black;
+    font-size: 1.5rem;
+    transition: 0.5s;
+}
+
+.card:hover .addFav-btn.active > i {
+    color: #ff434a;
+}
+
+.card .contentBx {
+    position: relative;
+    padding: 2px 0px 0px 0px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.card .contentBx > p {
+    font-size: 12px;
+    text-align: center;
+    color: black;
+    letter-spacing: 1px ;
+}
+
+.card .contentBx > h3 {
+    font-size: 18px;
+    text-align: center;
+    color: black;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: -1rem;
+    letter-spacing: 1px ;
+}
+
+.card .contentBx .price {
+    font-size: 20px;
+    color: black;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.card .contentBx .buyBtn {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 200px;
+    opacity: 0;
+    margin-top: 8px;
+    transition: 0.5s;
+}
+
+.card .contentBx .buyBtn > p {
+    color: black;
+    font-size: 20px;
+    padding: 0rem 2rem;
+    margin-top: 1rem;
+}
+
+.card:hover .contentBx .buyBtn {
+    top: 0;
+    opacity: 1;
+}

@@ -1,0 +1,131 @@
+[
+    {
+        "time": "07:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "8:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "9:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "10:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "11:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "12:00pm",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "01:00pm",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "02:00pm",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Nairobi - Eldoret",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+
+    {
+        "time": "07:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "8:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "9:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "10:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "11:00am",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "12:00pm",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "01:00pm",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    },
+    {
+        "time": "02:00pm",
+        "day": "Monday",
+        "date": "13th Monday 2021",
+        "travelDetails": "Eldoret - Nairobi",
+        "totalSeats": 11,
+        "amount": "Kshs 1.500"
+    }
+]

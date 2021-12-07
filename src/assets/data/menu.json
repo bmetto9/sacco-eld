@@ -1,0 +1,10 @@
+[
+    {
+        "placeholder": "Nairobi to Eldoret",
+        "link": "/products?category=gifts"
+    },
+    {
+        "placeholder": "Eldoret to Nairobi",
+        "link": "/products?category=beer"
+    }
+]

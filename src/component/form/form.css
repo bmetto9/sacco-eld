@@ -1,0 +1,81 @@
+.form {}
+
+.form .flex-form {
+    display: flex;
+    align-items: center;
+}
+
+.form .flex-form .input {
+    height: 35px;
+}
+
+.form .flex-form .input > input{
+    height: 100%;
+    width: 100%;
+    padding: 18px 60px 18px 20px;
+    font-size: 0.9rem;
+    background: transparent !important;
+    border: 0.1px solid whitesmoke;
+    border-radius: 10px 0px 0px 10px;
+    color: whitesmoke;;
+    background-color: whitesmoke;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+}
+
+.form .input {
+    height: 35px;
+}
+
+.form .input > input{
+    height: 100%;
+    width: 100%;
+    padding: 18px 60px 18px 20px;
+    font-size: 0.9rem;
+    background: transparent !important;
+    border: 0.1px solid whitesmoke;
+    border-radius: 10px 0px 0px 10px;
+    color: whitesmoke;;
+    background-color: whitesmoke;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.form .input-black {
+    height: 35px;
+    margin-top: 1rem;
+}
+
+.form .input-black > input{
+    height: 100%;
+    width: 100%;
+    padding: 18px 60px 18px 20px;
+    font-size: 0.9rem;
+    background: transparent !important;
+    border: 0.1px solid whitesmoke;
+    border-radius: 10px 10px 10px 10px;
+    color: black;;
+    background-color: whitesmoke;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.remember__forgotPass {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 24rem;
+    margin-top: 1rem;
+}
+
+.remember__forgotPass > a {
+    text-decoration: none;
+    color: #ff434a;
+    transition: 0.3s;
+}
+
+.remember__forgotPass > a:hover {
+    color: #fd8387;
+}

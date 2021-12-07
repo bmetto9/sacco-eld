@@ -1,0 +1,84 @@
+.button {
+    background: transparent;
+    padding: 7px 10px;
+    margin-top: 0.1rem;
+    border: 1px solid whitesmoke;
+    
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all .3s;
+}
+
+.button.black {
+    color: black;
+}
+
+.button.white {
+    color: #fff;
+}
+
+.button.radiusLeft{
+    border-radius: 10px 0px 0px 10px;
+}
+
+.button.radiusRight{
+    border-radius: 0px 10px 10px 0px;
+}
+
+.button.button.radiusAll {
+    border-radius: 10px 10px 10px 10px;
+}
+
+.button:hover {
+    background-color: #2c3494;
+    border: 1px solid #2c3494;
+    color: #fff;
+}
+
+.button__content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button__content.large {
+    font-size: 1.2rem !important;
+}
+
+.button__content.normal {
+    font-size: 0.9rem !important;
+}
+
+.main-bg {
+    background: #2c3494;
+    padding: 7px 2rem;
+    margin-top: 1rem;
+    border: 1px solid whitesmoke;
+    
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all .3s;
+}
+.main-bg.black {
+    color: black;
+}
+
+.main-bg.white {
+    color: #fff;
+}
+
+.main-bg.radiusLeft{
+    border-radius: 10px 0px 0px 10px;
+}
+
+.main-bg.radiusRight{
+    border-radius: 0px 10px 10px 0px;
+}
+
+.main-bg.radiusAll {
+    border-radius: 10px 10px 10px 10px;
+}
+
+.main-bg:hover {
+    background-color: #535ed6;
+    border: 1px solid #535ed6;
+    color: #fff;
+}
