@@ -1,0 +1,27 @@
+.cartCard {
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+}
+.cartCard .cartCard__image {
+    width: 7rem;
+}
+
+.cartCard .cartCard__Details {
+    padding: 0rem 2rem;
+}
+
+.cost {
+    display: flex;
+    align-items: center;
+}
+
+.cartCard .quantity_btn{
+    display: flex;
+    align-items: center;
+}
+
+.cartCard .quantity_btn > p {
+    padding: 0rem 1rem;
+    margin-top: 1rem;
+}
