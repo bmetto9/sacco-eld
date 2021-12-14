@@ -29,6 +29,7 @@
     font-size: 0.9rem;
     color: whitesmoke;
     text-decoration: none;
+    z-index: 1000;
 }
 
 .navigation .authentication-cart-wrapper {
@@ -65,6 +66,7 @@
 .navigation .cart-btn > i {
     font-size: 1.2rem;
     color: whitesmoke;
+    cursor: pointer;
 }
 
 .navigation .cart-btn .cart-quantity {
@@ -109,5 +111,49 @@
 
 .social__logins .social__logins-icons > a:hover {
     color: #2c3494;
+}
+
+.cart-menu {
+    position: fixed;
+    right: -700px;
+    top: 0;
+    width: 600px;
+    height: 100vh;
+    padding: 20px;
+    z-index: 10000000;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: right .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow-y: auto;
+}
+
+.cart-menu.active {
+    right: 0;
+}
+
+.cart-menu__close {
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    background-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cart-menu__select{
+    margin-top: 40px;
+}
+
+.checkout-btn {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+
+@media screen and (max-width: 768px){
+    .cart-menu {
+        z-index: 1000000000;
+    }
 }
 

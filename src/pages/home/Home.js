@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './home.css'
 import { Col, Row } from 'react-bootstrap'
 import Destinations from '../../assets/data/Destinations.json'
@@ -10,6 +10,9 @@ function Home() {
     const [navBackground, setNavBackground] = useState('transparent');
     const [navIcon, setNavIcon] = useState('https://res.cloudinary.com/emacon-production/image/upload/v1638363592/the-outlet/Artboard_7_copy_3png_cyyl9i.png')
 
+    useEffect(() => {
+        
+    }, [])
     const changeNavigationBackground = () => {
         if(window.scrollY >= 80) {
             setNavBackground('theme-color');

@@ -20,9 +20,9 @@ function Form(props) {
                 {
                     props.auth ? (
                         <div className="remember__forgotPass">
-                            <BootstrapForm.Group className="" controlId="formBasicCheckbox">
+                            {/* <BootstrapForm.Group className="" controlId="formBasicCheckbox">
                                 <BootstrapForm.Check type="checkbox" label="Remember Me" />
-                            </BootstrapForm.Group>
+                            </BootstrapForm.Group> */}
 
                             <a href="#" onClick={props.handleForgotPasswordBtn}>Forgot Password?    </a>
                         </div>

@@ -1,10 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { Col, Row, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import Form from '../form/Form';
 import './navigation.css'
 import menuData from '../../assets/data/menu.json'
 import Modal from '../modal/Modal'
+import cartData from '../../assets/data/CartData.json'
+
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { auth } from '../../helpers/firebaseConf';
+import CartCards from '../cart-cards/CartCards';
+import Button from '../button/Button';
+import { validEmail } from '../../regex/Regex';
+
+import queryString from 'query-string'
+import {AuthContext} from '../../context/Auth'
+
+const clickOutsideRef = (content_ref, toggle_ref) => {
+    document.addEventListener('mousedown', (e) => {
+        // user click toogle
+        if (toggle_ref.current && toggle_ref.current.contains(e.target)){
+            content_ref.current.classList.toggle('active')
+        } else {
+            // user click outside toggle and content
+            if (content_ref.current && !content_ref.current.contains(e.target)){
+                content_ref.current.classList.remove('active')
+            }
+        }
+    })
+}
 
 const renderLoading = () => (
     <Spinner animation="border" variant="light"/>
@@ -52,7 +76,7 @@ const renderSignUpForm = (item, index) => (
     </React.Fragment>
 )
 
-const renderSignInModal = (signInputData, handleSignUpModal, handleForgotPasswordModal) => {
+const renderSignInModal = (signInputData, handleSignUpModal, handleForgotPasswordModal, handleSignInForm, loading) => {
     const socialIcons = [
         {
             icon: "bx bxl-google",
@@ -70,12 +94,13 @@ const renderSignInModal = (signInputData, handleSignUpModal, handleForgotPasswor
                 flexForm={false}
                 formInputData={signInputData}
                 renderForm={(item, index) => renderSignInForm(item, index)}
-                buttonContent="Sign In"
+                buttonContent={loading ? renderLoading() : "Sign In"}
                 buttonColor="main-bg"
                 buttonContentColor="white"
                 borderRadius="all"
                 auth={true}
                 handleForgotPasswordBtn={handleForgotPasswordModal}
+                handleForm={handleSignInForm}
             />
 
             <span className="remember__forgotPass">
@@ -86,7 +111,7 @@ const renderSignInModal = (signInputData, handleSignUpModal, handleForgotPasswor
     )
 }
 
-const renderSignUpModal = (signUpInputData, handleSignInModal) => {
+const renderSignUpModal = (signUpInputData, handleSignInModal, handleSignUpform, loading) => {
     const socialIcons = [
         {
             icon: "bx bxl-google",
@@ -97,6 +122,7 @@ const renderSignUpModal = (signUpInputData, handleSignInModal) => {
             targetLink: ''
         }
     ]
+
     return (
         <div>
             <h6>Welcome Back! Sign In to continue shopping with us</h6>
@@ -104,10 +130,11 @@ const renderSignUpModal = (signUpInputData, handleSignInModal) => {
                 flexForm={false}
                 formInputData={signUpInputData}
                 renderForm={(item, index) => renderSignUpForm(item, index)}
-                buttonContent="Sign Up"
+                buttonContent={loading ? renderLoading() : "Sign Up"}
                 buttonColor="main-bg"
                 buttonContentColor="white"
                 borderRadius="all"
+                handleForm={handleSignUpform}
             />
 
             <span className="remember__forgotPass">
@@ -123,6 +150,9 @@ const renderForgotPasswordModal = () => (
 )
 
 function Navigation(props) {
+    // const { currentUser } = useContext(AuthContext)
+
+    const [loading, setLoading] = useState(false);
     const [searchProduct, setSearchProduct] = useState();
 
     const [showAuthModal, setShowAuthModal] = useState(false);
@@ -132,7 +162,22 @@ function Navigation(props) {
     const [password, setPassword] = useState();
     const [name, setName] = useState();
     const [phone, setPhone] = useState();
-    const [yearOfBirth, setYearOfBirth] = useState();
+
+    const [emailErr, setEmailErr] = useState(false);
+
+    const menu_ref = useRef(null);
+    const menu_toggle_ref = useRef(null);
+
+    clickOutsideRef(menu_ref, menu_toggle_ref);
+
+    const setActiveMenu = () => menu_ref.current.classList.add('active');
+    const closeMenu = () => menu_ref.current.classList.remove('active');
+
+    useEffect(() => {
+        const { signIn } = queryString.parse(window.location.search)
+        setShowAuthModal(signIn);
+        setAuthType('sign-in')
+    })
 
     const searchInputData = [
         {
@@ -182,12 +227,6 @@ function Navigation(props) {
             placeholder: 'Password',
             value: password,
             onChange: (e) => setPassword(e.target.value)
-        },
-        {
-            type: 'text',
-            placeholder: `Birth year, to verify if you're 18+ `,
-            value: yearOfBirth,
-            onChange: (e) => setYearOfBirth(e.target.value)
         }
     ]
 
@@ -206,6 +245,53 @@ function Navigation(props) {
 
     const handleForgotPasswordModal = () => {
         setAuthType('forgot-password')
+    }
+
+    const handleSignUpform = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+        try {
+            if (!validEmail.test(email)){
+                alert('Invalid Email Format');
+                setLoading(false);
+            } else {
+                const user = await createUserWithEmailAndPassword( auth, email, password); 
+                console.log(user); 
+                setLoading(false);
+                setShowAuthModal(false);
+            }
+        } catch (error) {
+            alert(error.message)
+            setLoading(false);
+        }
+        
+    }
+
+    const handleSignInForm = async (e) => {
+        e.preventDefault();
+
+        setLoading(true);
+
+        try {
+            if (!validEmail.test(email)){
+                setEmailErr(true);
+                alert('Invalid Email Format')
+                setLoading(false);
+            } else {
+                const user = await signInWithEmailAndPassword(auth, email, password);
+                console.log(user);
+                setLoading(false);
+                setShowAuthModal(false);
+            }
+        } catch (error) {
+            alert(error.message);
+            console.log(error);
+        }
+    }
+
+    const handleSignOut = async () => {
+        await signOut(auth )
     }
 
     return (
@@ -231,22 +317,74 @@ function Navigation(props) {
             }
 
             <div className="authentication-cart-wrapper">
-                <div className="authentication-btn" onClick={() => setShowAuthModal(true)}>
-                    <i class='bx bx-user'></i>
-                    <p>Sign In</p>
-                </div>
+                {/* {
+                    currentUser === undefined || null ? (
+                        <div className="authentication-btn" onClick={() => setShowAuthModal(true)}>
+                            <i class='bx bx-user'></i>
+                            <p>Sign In</p>
+                        </div>
+                    ) : (
+                        <div className="authentication-btn">
+                            <i class='bx bx-user'></i>
+                            <p>{currentUser.email}</p>
+                        </div>
+                    )
+                } */}
+
+                    <div className="authentication-btn" onClick={() => setShowAuthModal(true)}>
+                            <i class='bx bx-user'></i>
+                            <p>Sign In</p>
+                        </div>
+                
 
                 <Modal
                     show={showAuthModal}
                     onHide={handleOnCloseAuthModal}
                     title={authType === 'sign-in' ? 'Sign In' : 'Sign In' && authType === 'sign-up' ? 'Sign Up' : '' && authType === 'forgot-password' ? 'Forgot Password?' : ''}
-                    renderBody={authType === 'sign-in' ? renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal) : renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal) && authType === 'sign-up' ? renderSignUpModal(signUpInputData, handleSignInModal) : renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal) && authType === 'forgot-password' ? renderForgotPasswordModal : renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal)}
+                    renderBody={authType === 'sign-in' ? renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal, handleSignInForm, loading, emailErr) : [] && authType === 'sign-up' ? renderSignUpModal(signUpInputData, handleSignInModal, handleSignUpform, loading) : renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal, emailErr) && authType === 'forgot-password' ? renderForgotPasswordModal : renderSignInModal(signInInputData, handleSignUpModal, handleForgotPasswordModal)}
                 />
 
-                <div className="cart-btn">
+                <div 
+                    className="cart-btn"
+                    ref={menu_toggle_ref}
+                    onClick={() => setActiveMenu()}
+                >
                     <i class='bx bx-cart' ></i>
                     <div className="cart-quantity">
                         2
+                    </div>
+                </div>
+                <div className='cart-menu' ref={menu_ref}>
+                    <h4>Cart</h4>
+                    <div 
+                        className='cart-menu__close'
+                        onClick={() => closeMenu()}
+                    >
+                        <i className="bx bx-x"></i>
+                    </div>
+
+                    {
+                        cartData.map((item, index) => (
+                            <CartCards
+                                key={index}
+                                destination={item.destination}
+                                date={item.date}
+                                time={item.depatureTime}
+                                amount={item.amount}
+                                numberOfTickets={item.numberOfTickets}
+                            />
+                        ))
+                    }
+                    
+
+                    <div className='checkout-btn'>
+                        <Button
+                            content="Check Out"
+                            buttonColor='main-bg'
+                            onClickHandler={''}
+                            borderRadius="all"
+                            action='/checkout'
+                        />
                     </div>
                 </div>
             </div>

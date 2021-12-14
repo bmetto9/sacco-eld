@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navigation from '../../component/navigation/Navigation'
 import './travel.css'
+import queryString from 'query-string'
 
 import Destinations from '../../assets/data/Destinations.json'
 import TravelDetails from '../../assets/data/travelDetailList.json'
-import { Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+import TravelCard from '../../component/travelCard/TravelCard'
 
 function Travel() {
+    const [destination, setDestination] = useState();
+
+    useEffect(() => {
+        const { category } = queryString.parse(window.location.search);
+        setDestination(category);
+    })
+
     return (
         <div className='travel'>
             <Navigation 
@@ -15,25 +24,45 @@ function Travel() {
             />
 
             <div className='section-1'>
-                {
-                    TravelDetails.map((item, index) => (
-                        <React.Fragment key={index}>
-                            {
-                                item.travelDetails === 'Nairobi - Eldoret' ? (
-                                    <React.Fragment>
-                                        <div className='date'>
-                                            {item.date}
-                                        </div>
+                <Row>
+                    {
+                        TravelDetails.map((item, index) => (
+                            <React.Fragment key={index}>
+                                {
+                                    item.travelDetails === 'Nairobi - Eldoret' && destination === "nairobi-eldoret" ? (
+                                        <Col md={3}>
+                                            <TravelCard
+                                                time={item.time}
+                                                day={item.day}
+                                                date={item.date}
+                                                travelDetails={item.travelDetails}
+                                                totalSeatsAvailable={item.totalSeats}
+                                                amount={item.amount}
+                                            />
+                                        </Col>
+                                        
+                                    ) : (<></>) &&
 
-                                        <Row></Row>
-                                    </React.Fragment>
-                                    
-                                ) : null
-                            }
-                            
-                        </React.Fragment>
-                    ))
-                }
+                                    item.travelDetails === 'Eldoret - Nairobi' && destination === "eldoret-nairobi" ? (
+                                        <Col md={3}>
+                                            <TravelCard
+                                                time={item.time}
+                                                day={item.day}
+                                                date={item.date}
+                                                travelDetails={item.travelDetails}
+                                                totalSeatsAvailable={item.totalSeats}
+                                                amount={item.amount}
+                                            />
+                                        </Col>
+                                        
+                                    ) : (<></>)
+                                }
+                                
+                            </React.Fragment>
+                        ))
+                    }
+                </Row>
+                
                 
             </div>
 
